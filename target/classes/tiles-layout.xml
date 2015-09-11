@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+ 
+    <definition name="baseTemplate" template="/WEB-INF/views/template/default_template.jsp">
+        <put-attribute name="title" value="" />
+<!--         <put-attribute name="header" value="/WEB-INF/templates/header.jsp" /> -->
+        <put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" />
+        <put-attribute name="body" value="" />
+<!--         <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" /> -->
+    </definition>
+     
+    <definition name="monitoring/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/monitoring/{1}.jsp" />
+    </definition>
+     
+    <definition name="cpu/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/cpu/{1}.jsp" />
+    </definition>
+     
+    <definition name="mem/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/mem/{1}.jsp" />
+    </definition>
+     
+    <definition name="hdd/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/hdd/{1}.jsp" />
+    </definition>
+     
+    <definition name="net/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/net/{1}.jsp" />
+    </definition>
+     
+    <definition name="session/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/session/{1}.jsp" />
+    </definition>
+     
+    <definition name="board/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/board/{1}.jsp" />
+    </definition>
+     
+    <definition name="setup/*" extends="baseTemplate">
+        <put-attribute name="title" value="VDI 모니터링" />
+        <put-attribute name="body" value="/WEB-INF/views/setup/{1}.jsp" />
+    </definition>
+ 
+</tiles-definitions>

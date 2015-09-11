@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nautestech.VERDE.mapper.ArticleMapper">
+        
+    <insert id="insertArticle" parameterType="com.nautestech.VERDE.model.Article" >    
+        INSERT INTO TB_ARTICLE
+            (community_id, group_id, re_level, re_depth, 
+             empno, title, name, content, use_yn, regist_ymdt)
+        VALUES
+            (#{communityId}, #{articleId}, #{reLevel}, #{reDepth}, 
+             #{empno}, #{title}, #{name}, #{content}, 'Y', now())
+	    <selectKey resultType="int" keyProperty="articleId" order="AFTER">
+	       select LAST_INSERT_ID() as value
+	    </selectKey>
+    </insert>
+  	
+  	 <update id="deleteArticle" parameterType="int" >
+        UPDATE TB_ARTICLE
+           SET use_yn = 'N',
+               update_ymdt = now()
+        WHERE article_id = #{articleId}
+    </update>
+    
+    <resultMap type="com.nautestech.VERDE.model.Article" id="selectArticleListMap">
+        <result property="communityId" column="communityId"/>   
+        <result property="articleId" column="articleId"/>   
+        <result property="groupId" column="groupId"/>   
+        <result property="reLevel" column="reLevel"/>   
+        <result property="reDepth" column="reDepth"/>   
+        <result property="title" column="title"/>   
+        <result property="name" column="name"/>   
+        <result property="empno" column="empno"/>   
+        <result property="registYmdt" column="registYmdt"/>   
+    </resultMap>
+    <select id="selectArticleList" resultMap="selectArticleListMap">
+	    SELECT community_id communityId, article_id articleId, 
+               group_id groupId, re_level reLevel, re_depth reDepth, 
+               title, name, empno, regist_ymdt registYmdt
+	    FROM  TB_ARTICLE
+	    WHERE community_id = #{communityId}
+	      AND use_yn ='Y'
+	    ORDER BY article_id desc
+    </select>     
+  
+    <select id="selectArticleInfo" resultType="com.nautestech.VERDE.model.Article" parameterType="int">
+        SELECT community_id communityId, article_id articleId, 
+               group_id groupId, re_level reLevel, re_depth reDepth, 
+               title, name, content, empno, regist_ymdt registYmdt
+        FROM TB_ARTICLE
+        WHERE article_id = #{articleId}
+          AND use_yn ='Y'
+    </select>   
+    
+</mapper>

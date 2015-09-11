@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nautestech.security.mapper.UserMapper">
+
+	<resultMap type="com.nautestech.VERDE.model.Member" id="getUserMap">
+        <result property="MEMBER_ID" column="MEMBER_ID"/>   
+        <result property="MEMBER_PWD" column="MEMBER_PWD"/>
+    </resultMap>
+    <select id="getUser" resultMap="getUserMap">
+        SELECT MEMBER_ID, MEMBER_PWD
+        FROM MEMBER
+        WHERE MEMBER_ID = #{MEMBER_ID}
+    </select>
+
+	<resultMap type="com.nautestech.VERDE.model.MemberAuth" id="getAuthMap">
+        <result property="MEMBER_AUTH" column="MEMBER_AUTH"/>   
+    </resultMap>
+    <select id="getAuth" resultMap="getAuthMap">
+        SELECT MEMBER_AUTH
+        FROM MEMBER_AUTH
+        WHERE MEMBER_ID = #{MEMBER_ID}
+    </select>
+    
+</mapper>
